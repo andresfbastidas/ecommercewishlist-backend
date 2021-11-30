@@ -33,6 +33,7 @@ public class UserDetailsDAO implements UserDetails {
 		this.userName = userName;
 		this.password = password;
 		this.authorities = authorities;
+		this.email = email;
 	}
 
 	public static UserDetailsDAO build(Userapp user) {

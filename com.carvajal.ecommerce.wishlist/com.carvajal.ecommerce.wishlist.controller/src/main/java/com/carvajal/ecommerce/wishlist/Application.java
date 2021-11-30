@@ -1,14 +1,12 @@
-package com.carvajal.ecommerce.wishlist.controller;
+package com.carvajal.ecommerce.wishlist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@PropertySource("classpath:errormessages.properties")
 @ComponentScan("com.carvajal")
 @EnableJpaRepositories("com.carvajal.ecommerce.wishlist.persistence")
 @EntityScan("com.carvajal")
