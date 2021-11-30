@@ -38,10 +38,6 @@ public class Userapp implements Serializable {
 	@Column(name="user_name")
 	private String userName;
 
-	//bi-directional many-to-one association to ProductUserapp
-	@OneToMany(mappedBy="userapp")
-	private List<ProductUserapp> productUserapps;
-
 	//bi-directional many-to-one association to Profile
 	@ManyToOne
 	@JoinColumn(name="profile_id")
@@ -116,28 +112,6 @@ public class Userapp implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public List<ProductUserapp> getProductUserapps() {
-		return this.productUserapps;
-	}
-
-	public void setProductUserapps(List<ProductUserapp> productUserapps) {
-		this.productUserapps = productUserapps;
-	}
-
-	public ProductUserapp addProductUserapp(ProductUserapp productUserapp) {
-		getProductUserapps().add(productUserapp);
-		productUserapp.setUserapp(this);
-
-		return productUserapp;
-	}
-
-	public ProductUserapp removeProductUserapp(ProductUserapp productUserapp) {
-		getProductUserapps().remove(productUserapp);
-		productUserapp.setUserapp(null);
-
-		return productUserapp;
 	}
 
 	public Profile getProfile() {

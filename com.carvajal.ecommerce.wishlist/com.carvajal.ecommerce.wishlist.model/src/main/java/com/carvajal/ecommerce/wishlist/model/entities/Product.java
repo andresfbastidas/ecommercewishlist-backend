@@ -32,17 +32,6 @@ public class Product implements Serializable {
 	@Column(name="product_quantity")
 	private Long productQuantity;
 
-	//bi-directional many-to-one association to Category
-	@ManyToOne
-	@JoinColumn(name="id_category")
-	@JsonIgnore
-	private Category category;
-
-	//bi-directional many-to-one association to ProductUserapp
-	@OneToMany(mappedBy="product")
-	@JsonIgnore
-	private List<ProductUserapp> productUserapps;
-
 	//bi-directional many-to-one association to Wishlist
 	@OneToMany(mappedBy="product")
 	@JsonIgnore
@@ -81,36 +70,6 @@ public class Product implements Serializable {
 
 	public void setProductQuantity(Long productQuantity) {
 		this.productQuantity = productQuantity;
-	}
-
-	public Category getCategory() {
-		return this.category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public List<ProductUserapp> getProductUserapps() {
-		return this.productUserapps;
-	}
-
-	public void setProductUserapps(List<ProductUserapp> productUserapps) {
-		this.productUserapps = productUserapps;
-	}
-
-	public ProductUserapp addProductUserapp(ProductUserapp productUserapp) {
-		getProductUserapps().add(productUserapp);
-		productUserapp.setProduct(this);
-
-		return productUserapp;
-	}
-
-	public ProductUserapp removeProductUserapp(ProductUserapp productUserapp) {
-		getProductUserapps().remove(productUserapp);
-		productUserapp.setProduct(null);
-
-		return productUserapp;
 	}
 
 	public List<Wishlist> getWishlists() {

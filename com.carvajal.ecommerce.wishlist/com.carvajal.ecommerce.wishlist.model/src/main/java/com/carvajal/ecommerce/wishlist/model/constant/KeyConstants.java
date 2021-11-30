@@ -8,6 +8,7 @@ public class KeyConstants {
 	//Error messages
 	public static final String USER_NOT_FOUND = "El usuario no se encuentra registrado en el sistema";
 	public static final String PRODUCTS_NOT_FOUND = "No se encontraron productos";
+	public static final String PRODUCT_NOT_FOUND = "Producto no encontrado";
 	public static final String USER_EXISTS = "El usuario ya se encuentra registrado";
 	public static final String TECHNICAL_ERROR = "USUARIO";
 	public static final String TECHNICAL_ERROR_PRODUCTS = "PRODUCTO";

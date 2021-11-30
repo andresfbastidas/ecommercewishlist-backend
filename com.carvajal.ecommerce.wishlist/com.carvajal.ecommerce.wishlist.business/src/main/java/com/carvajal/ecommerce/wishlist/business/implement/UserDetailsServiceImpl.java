@@ -42,6 +42,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return UserDetailsDAO.build(user);
 	}
 
+	@Transactional
+	public Userapp findByUserName(String userName) throws UsernameNotFoundException {
+		Userapp user = null;
+		try {
+			user = userAppRepository.findByUserName(userName);
+			if (user == null) {
+				throw new UsernameNotFoundException(KeyConstants.USER_NOT_FOUND);
+			}
+		} catch (UsernameNotFoundException e) {
+			throw e;
+		}
+
+		return user;
+	}
+
+	@Transactional
 	public void registerUser(SignupRequest signupRequest) throws EcommerceException {
 		try {
 			if (userAppRepository.existsByUserName(signupRequest.getUsername())) {

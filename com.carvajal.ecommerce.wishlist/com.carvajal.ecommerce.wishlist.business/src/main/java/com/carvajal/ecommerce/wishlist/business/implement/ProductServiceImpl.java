@@ -31,4 +31,19 @@ public class ProductServiceImpl {
 		return productList;
 	}
 
+	public Product findByProductId(Long productId) throws EcommerceException {
+		Product product = null;
+		try {
+			product = productRepository.findByProductId(productId);
+			if (product == null) {
+				throw new EcommerceException(KeyConstants.ERROR_CODE_PRODUCTS_NOT_FOUND,
+						KeyConstants.PRODUCT_NOT_FOUND, KeyConstants.TECHNICAL_ERROR_PRODUCTS);
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+
+		return product;
+	}
+
 }

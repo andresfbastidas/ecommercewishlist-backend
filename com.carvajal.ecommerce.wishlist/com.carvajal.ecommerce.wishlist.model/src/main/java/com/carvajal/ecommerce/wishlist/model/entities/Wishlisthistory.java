@@ -19,8 +19,14 @@ public class Wishlisthistory implements Serializable {
 	@Column(name="id_wish_list_history")
 	private Long idWishListHistory;
 
-	@Column(name="id_product_wishlist")
-	private Long idProductWishlist;
+	@Column(name="id_product")
+	private Long idProduct;
+
+	@Column(name="id_user_app")
+	private Long idUserApp;
+
+	@Column(name="name_wishlist")
+	private String nameWishlist;
 
 	//bi-directional many-to-one association to Wishlist
 	@ManyToOne
@@ -38,12 +44,28 @@ public class Wishlisthistory implements Serializable {
 		this.idWishListHistory = idWishListHistory;
 	}
 
-	public Long getIdProductWishlist() {
-		return this.idProductWishlist;
+	public Long getIdProduct() {
+		return this.idProduct;
 	}
 
-	public void setIdProductWishlist(Long idProductWishlist) {
-		this.idProductWishlist = idProductWishlist;
+	public void setIdProduct(Long idProduct) {
+		this.idProduct = idProduct;
+	}
+
+	public Long getIdUserApp() {
+		return this.idUserApp;
+	}
+
+	public void setIdUserApp(Long idUserApp) {
+		this.idUserApp = idUserApp;
+	}
+
+	public String getNameWishlist() {
+		return this.nameWishlist;
+	}
+
+	public void setNameWishlist(String nameWishlist) {
+		this.nameWishlist = nameWishlist;
 	}
 
 	public Wishlist getWishlist() {
