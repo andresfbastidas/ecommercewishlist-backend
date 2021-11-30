@@ -23,9 +23,19 @@ public class Wishlist implements Serializable {
 	@Column(name="name_wishlist")
 	private String nameWishlist;
 
-	//bi-directional many-to-one association to ProductWishlist
+	//bi-directional many-to-one association to Product
+	@ManyToOne
+	@JoinColumn(name="id_product")
+	private Product product;
+
+	//bi-directional many-to-one association to Userapp
+	@ManyToOne
+	@JoinColumn(name="id_user_app")
+	private Userapp userapp;
+
+	//bi-directional many-to-one association to Wishlisthistory
 	@OneToMany(mappedBy="wishlist")
-	private List<ProductWishlist> productWishlists;
+	private List<Wishlisthistory> wishlisthistories;
 
 	public Wishlist() {
 	}
@@ -46,26 +56,42 @@ public class Wishlist implements Serializable {
 		this.nameWishlist = nameWishlist;
 	}
 
-	public List<ProductWishlist> getProductWishlists() {
-		return this.productWishlists;
+	public Product getProduct() {
+		return this.product;
 	}
 
-	public void setProductWishlists(List<ProductWishlist> productWishlists) {
-		this.productWishlists = productWishlists;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
-	public ProductWishlist addProductWishlist(ProductWishlist productWishlist) {
-		getProductWishlists().add(productWishlist);
-		productWishlist.setWishlist(this);
-
-		return productWishlist;
+	public Userapp getUserapp() {
+		return this.userapp;
 	}
 
-	public ProductWishlist removeProductWishlist(ProductWishlist productWishlist) {
-		getProductWishlists().remove(productWishlist);
-		productWishlist.setWishlist(null);
+	public void setUserapp(Userapp userapp) {
+		this.userapp = userapp;
+	}
 
-		return productWishlist;
+	public List<Wishlisthistory> getWishlisthistories() {
+		return this.wishlisthistories;
+	}
+
+	public void setWishlisthistories(List<Wishlisthistory> wishlisthistories) {
+		this.wishlisthistories = wishlisthistories;
+	}
+
+	public Wishlisthistory addWishlisthistory(Wishlisthistory wishlisthistory) {
+		getWishlisthistories().add(wishlisthistory);
+		wishlisthistory.setWishlist(this);
+
+		return wishlisthistory;
+	}
+
+	public Wishlisthistory removeWishlisthistory(Wishlisthistory wishlisthistory) {
+		getWishlisthistories().remove(wishlisthistory);
+		wishlisthistory.setWishlist(null);
+
+		return wishlisthistory;
 	}
 
 }

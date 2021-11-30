@@ -1,20 +1,11 @@
 package com.carvajal.ecommerce.wishlist.model.entities;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
 
 
 /**
@@ -52,10 +43,10 @@ public class Product implements Serializable {
 	@JsonIgnore
 	private List<ProductUserapp> productUserapps;
 
-	//bi-directional many-to-one association to ProductWishlist
+	//bi-directional many-to-one association to Wishlist
 	@OneToMany(mappedBy="product")
 	@JsonIgnore
-	private List<ProductWishlist> productWishlists;
+	private List<Wishlist> wishlists;
 
 	public Product() {
 	}
@@ -122,26 +113,26 @@ public class Product implements Serializable {
 		return productUserapp;
 	}
 
-	public List<ProductWishlist> getProductWishlists() {
-		return this.productWishlists;
+	public List<Wishlist> getWishlists() {
+		return this.wishlists;
 	}
 
-	public void setProductWishlists(List<ProductWishlist> productWishlists) {
-		this.productWishlists = productWishlists;
+	public void setWishlists(List<Wishlist> wishlists) {
+		this.wishlists = wishlists;
 	}
 
-	public ProductWishlist addProductWishlist(ProductWishlist productWishlist) {
-		getProductWishlists().add(productWishlist);
-		productWishlist.setProduct(this);
+	public Wishlist addWishlist(Wishlist wishlist) {
+		getWishlists().add(wishlist);
+		wishlist.setProduct(this);
 
-		return productWishlist;
+		return wishlist;
 	}
 
-	public ProductWishlist removeProductWishlist(ProductWishlist productWishlist) {
-		getProductWishlists().remove(productWishlist);
-		productWishlist.setProduct(null);
+	public Wishlist removeWishlist(Wishlist wishlist) {
+		getWishlists().remove(wishlist);
+		wishlist.setProduct(null);
 
-		return productWishlist;
+		return wishlist;
 	}
 
 }

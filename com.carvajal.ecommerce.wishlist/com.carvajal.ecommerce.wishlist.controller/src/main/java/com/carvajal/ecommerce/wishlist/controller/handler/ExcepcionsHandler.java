@@ -66,7 +66,7 @@ public class ExcepcionsHandler {
 		ErrorType error = new ErrorType();
 		error.setCodeError("100");
 		error.setTecnicalMessage(e.getMessage());
-		error.setUserMessage("No es posible porcesar la transaccion en este momento, por favor reintente mas tarde");
+		error.setUserMessage(e.getMessage());
 		List<ErrorType> errors = new ArrayList<>();
 		errors.add(error);
 
@@ -84,7 +84,7 @@ public class ExcepcionsHandler {
 	public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
 
 		ErrorType err = new ErrorType();
-		err.setCodeError("101");
+		err.setCodeError("099");
 		err.setTecnicalMessage("FATAL");
 		err.setUserMessage("No es posible porcesar la transaccion en este momento, por favor reintente mas tarde");
 

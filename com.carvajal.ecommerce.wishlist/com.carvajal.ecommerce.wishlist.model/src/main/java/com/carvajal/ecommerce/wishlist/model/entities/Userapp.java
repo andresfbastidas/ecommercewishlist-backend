@@ -4,50 +4,52 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
+
 /**
  * The persistent class for the userapp database table.
  * 
  */
 @Entity
-@NamedQuery(name = "Userapp.findAll", query = "SELECT u FROM Userapp u")
+@NamedQuery(name="Userapp.findAll", query="SELECT u FROM Userapp u")
 public class Userapp implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "USERAPP_IDUSERAPP_GENERATOR", sequenceName = "USER_SEQ", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERAPP_IDUSERAPP_GENERATOR")
-	@Column(name = "id_user_app")
+	@SequenceGenerator(name="USERAPP_IDUSERAPP_GENERATOR", sequenceName="USER_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USERAPP_IDUSERAPP_GENERATOR")
+	@Column(name="id_user_app")
 	private Long idUserApp;
 
-	@Column(name = "email")
 	private String email;
 
-	@Column(name = "firts_name")
+	@Column(name="firts_name")
 	private String firtsName;
 
-	@Column(name = "second_name")
-	private String secondName;
-
-	@Column(name = "second_surname")
-	private String secondSurname;
-
-	@Column(name = "surname")
-	private String surname;
-
-	@Column(name = "user_name")
-	private String userName;
-
-	@Column(name = "password")
 	private String password;
 
-	// bi-directional many-to-one association to ProductUserapp
-	@OneToMany(mappedBy = "userapp")
+	@Column(name="second_name")
+	private String secondName;
+
+	@Column(name="second_surname")
+	private String secondSurname;
+
+	private String surname;
+
+	@Column(name="user_name")
+	private String userName;
+
+	//bi-directional many-to-one association to ProductUserapp
+	@OneToMany(mappedBy="userapp")
 	private List<ProductUserapp> productUserapps;
 
-	// bi-directional many-to-one association to Profile
+	//bi-directional many-to-one association to Profile
 	@ManyToOne
-	@JoinColumn(name = "profile_id")
+	@JoinColumn(name="profile_id")
 	private Profile profile;
+
+	//bi-directional many-to-one association to Wishlist
+	@OneToMany(mappedBy="userapp")
+	private List<Wishlist> wishlists;
 
 	public Userapp() {
 	}
@@ -74,6 +76,14 @@ public class Userapp implements Serializable {
 
 	public void setFirtsName(String firtsName) {
 		this.firtsName = firtsName;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getSecondName() {
@@ -138,12 +148,26 @@ public class Userapp implements Serializable {
 		this.profile = profile;
 	}
 
-	public String getPassword() {
-		return password;
+	public List<Wishlist> getWishlists() {
+		return this.wishlists;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setWishlists(List<Wishlist> wishlists) {
+		this.wishlists = wishlists;
+	}
+
+	public Wishlist addWishlist(Wishlist wishlist) {
+		getWishlists().add(wishlist);
+		wishlist.setUserapp(this);
+
+		return wishlist;
+	}
+
+	public Wishlist removeWishlist(Wishlist wishlist) {
+		getWishlists().remove(wishlist);
+		wishlist.setUserapp(null);
+
+		return wishlist;
 	}
 
 }
