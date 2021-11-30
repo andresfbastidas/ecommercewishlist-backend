@@ -7,9 +7,13 @@ public class FcdConstants {
 	public static final String CONTEXT_API = "/api/" + VERSION_API;
 
 	public static final String USER = CONTEXT_API + "/user";
+	
+	public static final String PRODUCT = CONTEXT_API + "/product";
 
 	public static final String LOGIN = "/authenticate";
 
 	public static final String CREATE_USER = "/createUser";
+	
+	public static final String FIND_ALL_PRODUCTS = "/findAllProducts";
 
 }

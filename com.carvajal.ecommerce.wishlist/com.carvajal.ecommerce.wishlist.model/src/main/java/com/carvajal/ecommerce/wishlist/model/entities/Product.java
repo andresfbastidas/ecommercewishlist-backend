@@ -1,8 +1,20 @@
 package com.carvajal.ecommerce.wishlist.model.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -20,6 +32,7 @@ public class Product implements Serializable {
 	@Column(name="id_product")
 	private Long idProduct;
 
+	@Column(name="price")
 	private Long price;
 
 	@Column(name="product_name")
@@ -31,14 +44,17 @@ public class Product implements Serializable {
 	//bi-directional many-to-one association to Category
 	@ManyToOne
 	@JoinColumn(name="id_category")
+	@JsonIgnore
 	private Category category;
 
 	//bi-directional many-to-one association to ProductUserapp
 	@OneToMany(mappedBy="product")
+	@JsonIgnore
 	private List<ProductUserapp> productUserapps;
 
 	//bi-directional many-to-one association to ProductWishlist
 	@OneToMany(mappedBy="product")
+	@JsonIgnore
 	private List<ProductWishlist> productWishlists;
 
 	public Product() {
