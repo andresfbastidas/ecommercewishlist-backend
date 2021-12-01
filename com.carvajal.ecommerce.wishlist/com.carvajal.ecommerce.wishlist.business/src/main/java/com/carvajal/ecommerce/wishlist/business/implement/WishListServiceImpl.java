@@ -13,7 +13,7 @@ import com.carvajal.ecommerce.wishlist.model.entities.Userapp;
 import com.carvajal.ecommerce.wishlist.model.entities.Wishlist;
 import com.carvajal.ecommerce.wishlist.model.entities.Wishlisthistory;
 import com.carvajal.ecommerce.wishlist.model.exception.EcommerceException;
-import com.carvajal.ecommerce.wishlist.model.request.AddWishListRequest;
+import com.carvajal.ecommerce.wishlist.model.request.WishListRequest;
 import com.carvajal.ecommerce.wishlist.persistence.WishListHistoryRepository;
 import com.carvajal.ecommerce.wishlist.persistence.WishListRepository;
 
@@ -33,7 +33,7 @@ public class WishListServiceImpl {
 	private WishListHistoryRepository wishListHistoryRepository;
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void addProductWishList(AddWishListRequest addWishListRequest) throws EcommerceException {
+	public void addProductWishList(WishListRequest addWishListRequest) throws EcommerceException {
 
 		try {
 			Wishlist wishlist = wishListRepository.findByProductId(addWishListRequest.getIdProduct());
@@ -78,7 +78,7 @@ public class WishListServiceImpl {
 	}
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void deleteByProductId(AddWishListRequest addWishListRequest) throws EcommerceException {
+	public void deleteByProductId(WishListRequest addWishListRequest) throws EcommerceException {
 
 		try {
 			Wishlist wishlist = wishListRepository.findByProductId(addWishListRequest.getIdProduct());

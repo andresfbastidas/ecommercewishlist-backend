@@ -18,7 +18,7 @@ import com.carvajal.ecommerce.wishlist.controller.constant.FcdConstants;
 import com.carvajal.ecommerce.wishlist.model.constant.KeyConstants;
 import com.carvajal.ecommerce.wishlist.model.entities.Wishlist;
 import com.carvajal.ecommerce.wishlist.model.exception.EcommerceException;
-import com.carvajal.ecommerce.wishlist.model.request.AddWishListRequest;
+import com.carvajal.ecommerce.wishlist.model.request.WishListRequest;
 import com.carvajal.ecommerce.wishlist.model.response.AllProductsWishListResponse;
 import com.carvajal.ecommerce.wishlist.model.response.GenericResponse;
 
@@ -30,7 +30,7 @@ public class WishListController {
 	private WishListServiceImpl wishListServiceImpl;
 
 	@PostMapping(FcdConstants.ADD_PRODUCT_WISH_LIST)
-	public ResponseEntity<?> registerUser(@Valid @RequestBody AddWishListRequest addWishListRequest)
+	public ResponseEntity<?> registerUser(@Valid @RequestBody WishListRequest addWishListRequest)
 			throws EcommerceException {
 
 		wishListServiceImpl.addProductWishList(addWishListRequest);
@@ -50,7 +50,7 @@ public class WishListController {
 	}
 	
 	@PostMapping(FcdConstants.DELETE_PRODUCT_WISH_LIST)
-	public ResponseEntity<?> deleteProductWishList(@Valid @RequestBody AddWishListRequest addWishListRequest)
+	public ResponseEntity<?> deleteProductWishList(@Valid @RequestBody WishListRequest addWishListRequest)
 			throws EcommerceException {
 
 		wishListServiceImpl.deleteByProductId(addWishListRequest);

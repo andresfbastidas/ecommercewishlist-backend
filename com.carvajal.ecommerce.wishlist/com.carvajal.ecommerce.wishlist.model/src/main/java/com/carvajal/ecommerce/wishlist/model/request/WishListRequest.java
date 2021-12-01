@@ -2,7 +2,7 @@ package com.carvajal.ecommerce.wishlist.model.request;
 
 import java.io.Serializable;
 
-public class AddWishListRequest implements Serializable {
+public class WishListRequest implements Serializable {
 
 	private Long idProduct;
 
