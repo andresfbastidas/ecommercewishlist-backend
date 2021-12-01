@@ -2,6 +2,9 @@ package com.carvajal.ecommerce.wishlist.model.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 /**
@@ -27,6 +30,7 @@ public class Wishlist implements Serializable {
 	// bi-directional many-to-one association to Userapp
 	@ManyToOne
 	@JoinColumn(name = "id_user_app")
+	@JsonIgnore
 	private Userapp userapp;
 
 	public Wishlist() {

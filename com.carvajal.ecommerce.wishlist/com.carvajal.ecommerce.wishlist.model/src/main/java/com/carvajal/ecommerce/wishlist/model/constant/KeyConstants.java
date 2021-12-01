@@ -12,6 +12,7 @@ public class KeyConstants {
 	public static final String PRODUCT_NOT_FOUND = "Producto no encontrado";
 	public static final String USER_EXISTS = "El usuario ya se encuentra registrado";
 	public static final String PRODUCT_EXISTS_WISH_LIST = "El producto ya existe en la lista de deseos";
+	public static final String WISH_LIST_IS_EMPTY = "La lista de deseos se encuentra vacia";
 	public static final String TECHNICAL_ERROR = "USUARIO";
 	public static final String TECHNICAL_ERROR_PRODUCTS = "PRODUCTO";
 	public static final String TECHNICAL_ERROR_LISTA_DE_DESEOS = "LISTA DE DESEOS";

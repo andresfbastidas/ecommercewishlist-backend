@@ -1,5 +1,7 @@
 package com.carvajal.ecommerce.wishlist.business.implement;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -57,6 +59,22 @@ public class WishListServiceImpl {
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Wishlist> findAllWishList() throws EcommerceException {
+		List<Wishlist> wishList = null;
+		try {
+			wishList = wishListRepository.findAll();
+			if (wishList.isEmpty() || wishList.equals(null)) {
+				throw new EcommerceException(KeyConstants.ERROR_CODE_WISH_LIST,
+						KeyConstants.WISH_LIST_IS_EMPTY, KeyConstants.TECHNICAL_ERROR_LISTA_DE_DESEOS);
+			}
+		} catch (Exception e) {
+			throw e;
+		}
+
+		return wishList;
 	}
 
 }
