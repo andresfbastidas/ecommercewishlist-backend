@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.carvajal.ecommerce.wishlist.persistence")
 @EntityScan("com.carvajal")
 @PropertySource("classpath:errormessages.properties")
+@PropertySource(value ={"file:${com.gyf.creditcard.withdrawal.home}/application.properties"}, ignoreResourceNotFound = true)
 public class Application {
 
 	public static final String ENV_PATH = "com.carvajal.ecommerce.wishlist.home";
