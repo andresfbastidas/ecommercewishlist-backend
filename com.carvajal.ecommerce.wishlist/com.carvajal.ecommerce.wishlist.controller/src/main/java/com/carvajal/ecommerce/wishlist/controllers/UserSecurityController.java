@@ -34,13 +34,13 @@ import com.carvajal.ecommerce.wishlist.model.response.JwtResponse;
 public class UserSecurityController {
 
 	@Autowired
-	AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	JwtUtils jwtUtils;
+	private JwtUtils jwtUtils;
 
 	@Autowired
-	UserDetailsServiceImpl userServiceImpl;
+	private UserDetailsServiceImpl userServiceImpl;
 
 	@PostMapping(FcdConstants.LOGIN)
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

@@ -9,11 +9,15 @@ public class FcdConstants {
 	public static final String USER = CONTEXT_API + "/user";
 	
 	public static final String PRODUCT = CONTEXT_API + "/product";
+	
+	public static final String WISH_LIST = CONTEXT_API + "/wishList";
 
 	public static final String LOGIN = "/authenticate";
 
 	public static final String CREATE_USER = "/createUser";
 	
 	public static final String FIND_ALL_PRODUCTS = "/findAllProducts";
+	
+	public static final String ADD_PRODUCT_WISH_LIST = "/addProductWishList";
 
 }

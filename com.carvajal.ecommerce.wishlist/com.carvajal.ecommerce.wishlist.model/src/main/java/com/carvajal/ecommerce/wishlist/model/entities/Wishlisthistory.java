@@ -28,11 +28,6 @@ public class Wishlisthistory implements Serializable {
 	@Column(name="name_wishlist")
 	private String nameWishlist;
 
-	//bi-directional many-to-one association to Wishlist
-	@ManyToOne
-	@JoinColumn(name="id_wish_list")
-	private Wishlist wishlist;
-
 	public Wishlisthistory() {
 	}
 
@@ -66,14 +61,6 @@ public class Wishlisthistory implements Serializable {
 
 	public void setNameWishlist(String nameWishlist) {
 		this.nameWishlist = nameWishlist;
-	}
-
-	public Wishlist getWishlist() {
-		return this.wishlist;
-	}
-
-	public void setWishlist(Wishlist wishlist) {
-		this.wishlist = wishlist;
 	}
 
 }

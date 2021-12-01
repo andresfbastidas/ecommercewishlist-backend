@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.carvajal.ecommerce.wishlist.model.constant.KeyConstants;
 import com.carvajal.ecommerce.wishlist.model.entities.Product;
@@ -16,6 +17,7 @@ public class ProductServiceImpl {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Transactional(readOnly = true)
 	public List<Product> findAll() throws EcommerceException {
 		List<Product> productList = null;
 		try {
@@ -31,6 +33,7 @@ public class ProductServiceImpl {
 		return productList;
 	}
 
+	@Transactional(readOnly = true)
 	public Product findByProductId(Long productId) throws EcommerceException {
 		Product product = null;
 		try {

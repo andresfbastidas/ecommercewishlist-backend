@@ -43,14 +43,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	}
 
 	@Transactional
-	public Userapp findByUserName(String userName) throws UsernameNotFoundException {
+	public Userapp findByUserName(String userName) throws EcommerceException {
 		Userapp user = null;
 		try {
 			user = userAppRepository.findByUserName(userName);
 			if (user == null) {
 				throw new UsernameNotFoundException(KeyConstants.USER_NOT_FOUND);
 			}
-		} catch (UsernameNotFoundException e) {
+		} catch (Exception e) {
 			throw e;
 		}
 
