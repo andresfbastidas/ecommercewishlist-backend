@@ -63,18 +63,30 @@ public class WishListServiceImpl {
 	
 	@Transactional(readOnly = true)
 	public List<Wishlist> findAllWishList() throws EcommerceException {
-		List<Wishlist> wishList = null;
+		List<Wishlist> wishLists = null;
 		try {
-			wishList = wishListRepository.findAll();
-			if (wishList.isEmpty() || wishList.equals(null)) {
+			wishLists = wishListRepository.findAll();
+			if (wishLists.isEmpty() || wishLists.equals(null)) {
 				throw new EcommerceException(KeyConstants.ERROR_CODE_WISH_LIST,
 						KeyConstants.WISH_LIST_IS_EMPTY, KeyConstants.TECHNICAL_ERROR_LISTA_DE_DESEOS);
+			}else {
+				for (Wishlist wishlist : wishLists) {
+					try {
+						if(wishlist.getProduct().getProductQuantity() == 0) {
+							throw new EcommerceException(KeyConstants.ERROR_CODE_WISH_LIST,
+									KeyConstants.PRODUCT_STOCK_EMPTY, KeyConstants.TECHNICAL_ERROR_LISTA_DE_DESEOS);
+						}
+					} catch (Exception e) {
+						continue;
+					}
+				
+				}
 			}
 		} catch (Exception e) {
 			throw e;
 		}
 
-		return wishList;
+		return wishLists;
 	}
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
