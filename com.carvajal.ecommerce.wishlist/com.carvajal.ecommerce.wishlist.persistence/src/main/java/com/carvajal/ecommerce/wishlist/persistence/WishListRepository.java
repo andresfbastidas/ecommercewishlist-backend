@@ -3,6 +3,7 @@ package com.carvajal.ecommerce.wishlist.persistence;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,8 @@ public interface WishListRepository extends JpaRepository<Wishlist, Long> {
 	public Wishlist findByProductId(Long idProduct);
 	
 	public List<Wishlist> findAll();
+	
+	@Modifying
+	@Query(value = "DELETE FROM wishlist where id_product = ?1", nativeQuery = true)
+	void deleteByProduct(Long idProduct);
 }

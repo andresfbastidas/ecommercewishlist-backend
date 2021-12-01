@@ -21,5 +21,7 @@ public class FcdConstants {
 	public static final String ADD_PRODUCT_WISH_LIST = "/addProductWishList";
 	
 	public static final String FIND_ALL_WISH_LIST = "/allProductsWishList";
+	
+	public static final String DELETE_PRODUCT_WISH_LIST = "/deleteProductById";
 
 }

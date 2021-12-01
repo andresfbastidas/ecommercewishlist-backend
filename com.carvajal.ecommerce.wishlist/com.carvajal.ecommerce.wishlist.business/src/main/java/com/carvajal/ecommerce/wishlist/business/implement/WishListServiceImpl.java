@@ -76,5 +76,22 @@ public class WishListServiceImpl {
 
 		return wishList;
 	}
+	
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void deleteByProductId(AddWishListRequest addWishListRequest) throws EcommerceException {
+
+		try {
+			Wishlist wishlist = wishListRepository.findByProductId(addWishListRequest.getIdProduct());
+			if(wishlist != null) {
+				wishListRepository.deleteByProduct(addWishListRequest.getIdProduct());
+			}else {
+				throw new EcommerceException(KeyConstants.ERROR_CODE_WISH_LIST,
+						KeyConstants.PRODUCT_NOT_FOUND_WISH_LIST, KeyConstants.TECHNICAL_ERROR_LISTA_DE_DESEOS);
+			}
+		
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 
 }

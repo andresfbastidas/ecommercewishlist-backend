@@ -48,4 +48,14 @@ public class WishListController {
 		return new ResponseEntity<>(allProductsWishListResponse, HttpStatus.OK);
 
 	}
+	
+	@PostMapping(FcdConstants.DELETE_PRODUCT_WISH_LIST)
+	public ResponseEntity<?> deleteProductWishList(@Valid @RequestBody AddWishListRequest addWishListRequest)
+			throws EcommerceException {
+
+		wishListServiceImpl.deleteByProductId(addWishListRequest);
+		GenericResponse genericResponse = new GenericResponse();
+		genericResponse.setMessage(KeyConstants.SUCCESS_DELETE_PRODUCT_WISHLIST);
+		return new ResponseEntity<>(genericResponse, HttpStatus.OK);
+	}
 }
