@@ -3,12 +3,14 @@ package com.carvajal.ecommerce.wishlist.business.implement;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.carvajal.ecommerce.wishlist.business.utils.ServiceUtils;
 import com.carvajal.ecommerce.wishlist.model.constant.KeyConstants;
 import com.carvajal.ecommerce.wishlist.model.dao.UserDetailsDAO;
 import com.carvajal.ecommerce.wishlist.model.entities.Profile;
@@ -18,7 +20,7 @@ import com.carvajal.ecommerce.wishlist.model.request.SignupRequest;
 import com.carvajal.ecommerce.wishlist.persistence.UserAppRepository;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl extends ServiceUtils implements UserDetailsService {
 
 	@Autowired
 	private UserAppRepository userAppRepository;
@@ -28,14 +30,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	@Transactional
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String userName) throws BadCredentialsException {
 		Userapp user = null;
 		try {
 			user = userAppRepository.findByUserName(userName);
 			if (user == null) {
-				throw new UsernameNotFoundException(KeyConstants.USER_NOT_FOUND);
+				throw new BadCredentialsException(KeyConstants.USER_NOT_FOUND);
 			}
-		} catch (UsernameNotFoundException e) {
+		} catch (BadCredentialsException e) {
 			throw e;
 		}
 
@@ -61,8 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public void registerUser(SignupRequest signupRequest) throws EcommerceException {
 		try {
 			if (userAppRepository.existsByUserName(signupRequest.getUsername())) {
-				throw new EcommerceException(KeyConstants.ERROR_CODE_EXISTS_USER, KeyConstants.USER_EXISTS,
-						KeyConstants.TECHNICAL_ERROR);
+				buildCustomException(KeyConstants.USER_EXISTS, KeyConstants.ERROR_CODE_EXISTS_USER);
 			}
 
 			// Create new user's account

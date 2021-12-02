@@ -3,6 +3,8 @@ package com.carvajal.ecommerce.wishlist.model.constant;
 public class KeyConstants {
 
 	//Success messagges
+	public static final String COMMON_ERROR = "Error inesperado en el aplicativo. clase [%s]";
+	public static final String ERROR_INESPERADO_APP = "Error inesperado en el aplicativo";
 	public static final String SUCCESS_CREATE_USER = "Usuario creado con exito";
 	public static final String SUCCESS_ADD_PRODUCT_WISHLIST = "Producto añadido a la lista de deseos";
 	public static final String SUCCESS_DELETE_PRODUCT_WISHLIST = "Producto eliminado de la lista de deseos";

@@ -7,12 +7,15 @@ public class EcommerceException extends Exception implements Serializable {
 	private String code;
 	private String message;
 	private String type;
+	private String loggerReference;
 
-	public EcommerceException(String code, String message, String type) {
-		super();
+	public EcommerceException(String code, String message, String type, String loggerReference,
+			Throwable cause) {
+		super(message,cause);
 		this.code = code;
 		this.message = message;
 		this.type = type;
+		this.loggerReference = loggerReference;
 	}
 
 	public String getCode() {
@@ -39,5 +42,14 @@ public class EcommerceException extends Exception implements Serializable {
 		this.type = type;
 	}
 
-	private static final long serialVersionUID = -8067072434392824924L;
+	public String getLoggerReference() {
+		return loggerReference;
+	}
+
+	public void setLoggerReference(String loggerReference) {
+		this.loggerReference = loggerReference;
+	}
+
+	private static final long serialVersionUID = -3190981567763867372L;
+
 }
