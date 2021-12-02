@@ -33,24 +33,24 @@ public class WishListServiceImpl {
 	private WishListHistoryRepository wishListHistoryRepository;
 
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void addProductWishList(WishListRequest addWishListRequest) throws EcommerceException {
+	public void addProductWishList(WishListRequest wishListRequest) throws EcommerceException {
 
 		try {
-			Wishlist wishlist = wishListRepository.findByProductId(addWishListRequest.getIdProduct());
+			Wishlist wishlist = wishListRepository.findByProductId(wishListRequest.getIdProduct());
 			if(wishlist != null) {
 				throw new EcommerceException(KeyConstants.ERROR_CODE_WISH_LIST,
 						KeyConstants.PRODUCT_EXISTS_WISH_LIST, KeyConstants.TECHNICAL_ERROR_LISTA_DE_DESEOS);
 			}else {
 				wishlist = new Wishlist();
-				Product product = productServiceImpl.findByProductId(addWishListRequest.getIdProduct());
-				Userapp user = userDetailsServiceImpl.findByUserName(addWishListRequest.getUserName());
+				Product product = productServiceImpl.findByProductId(wishListRequest.getIdProduct());
+				Userapp user = userDetailsServiceImpl.findByUserName(wishListRequest.getUserName());
 				//wishlist.setNameWishlist(addWishListRequest.getWishlist().getNameWishlist());
 				wishlist.setProduct(product);
 				wishlist.setUserapp(user);
 				wishListRepository.save(wishlist);
 
 				Wishlisthistory wishlisthistory = new Wishlisthistory();
-				wishlisthistory.setIdProduct(addWishListRequest.getIdProduct());
+				wishlisthistory.setIdProduct(wishListRequest.getIdProduct());
 				wishlisthistory.setIdUserApp(user.getIdUserApp());
 				//wishlisthistory.setNameWishlist(addWishListRequest.getWishlist().getNameWishlist());
 				wishListHistoryRepository.save(wishlisthistory);

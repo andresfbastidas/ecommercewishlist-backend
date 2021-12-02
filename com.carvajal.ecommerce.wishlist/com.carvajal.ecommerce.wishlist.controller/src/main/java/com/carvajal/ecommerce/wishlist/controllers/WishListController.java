@@ -32,10 +32,10 @@ public class WishListController {
 	private WishListServiceImpl wishListServiceImpl;
 
 	@PostMapping(FcdConstants.ADD_PRODUCT_WISH_LIST)
-	public ResponseEntity<?> registerUser(@Valid @RequestBody WishListRequest addWishListRequest)
+	public ResponseEntity<?> registerUser(@Valid @RequestBody WishListRequest wishListRequest)
 			throws EcommerceException {
 
-		wishListServiceImpl.addProductWishList(addWishListRequest);
+		wishListServiceImpl.addProductWishList(wishListRequest);
 		GenericResponse genericResponse = new GenericResponse();
 		genericResponse.setMessage(KeyConstants.SUCCESS_ADD_PRODUCT_WISHLIST);
 		return new ResponseEntity<>(genericResponse, HttpStatus.OK);
